@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taskat/features/login/login_screen.dart';
 import 'package:taskat/features/splash/splash_screen.dart';
 
 class TaskatApp extends StatelessWidget {
@@ -12,9 +11,7 @@ class TaskatApp extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp(
-        home: SplashScreen(),
-      ),
+      child: MaterialApp(home: SplashScreen()),
     );
   }
 }
