@@ -18,11 +18,6 @@ A few resources to get you started if this is your first Flutter project:
 88-44cb-92c9-17a060649bd2
 
 
-https://github.com/user-attachments/assets/2957ef2e-d3d5-44c5-927d-9e656801ba24
-
-
-
-https://github.com/user-attachments/assets/2957ef2e-d3d5-44c5-927d-9e656801ba24
 
 
 ookbook)
