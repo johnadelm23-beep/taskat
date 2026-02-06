@@ -17,6 +17,39 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final ImagePicker picker = ImagePicker();
+  void showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text(
+          'Error',
+          style: TextStyle(
+            fontFamily: 'appFont',
+            fontWeight: .bold,
+            fontSize: 40,
+          ),
+        ),
+        content: Text(
+          message,
+          style: TextStyle(fontFamily: 'appFont', fontSize: 25),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text(
+              'OK',
+              style: TextStyle(
+                fontFamily: 'appFont',
+                fontSize: 25,
+                fontWeight: .bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   TextEditingController nameControler = TextEditingController();
   XFile? image;
   void openCamera() async {
@@ -103,23 +136,29 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 50.h),
               CustomAppButton(
                 text: 'Done',
-                onPressed: () {
-                  Hive.box<UserModel>(AppConstants.userBox)
-                      .add(
-                        UserModel(
-                          image: image?.path ?? "",
-                          name: nameControler.text,
-                        ),
-                      )
-                      .then((v) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                        );
-                      })
-                      .catchError((v) {
-                        print("error");
-                      });
+                onPressed: () async {
+                  if (image == null) {
+                    showErrorDialog('Please select image');
+                    return;
+                  }
+                  if (nameControler.text.trim().isEmpty) {
+                    showErrorDialog('Please enter your name');
+                    return;
+                  }
+                  try {
+                    await Hive.box<UserModel>(AppConstants.userBox).add(
+                      UserModel(
+                        image: image?.path ?? "",
+                        name: nameControler.text,
+                      ),
+                    );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
+                  } catch (e) {
+                    print(e);
+                  }
                 },
               ),
             ],
