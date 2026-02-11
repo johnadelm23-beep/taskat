@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taskat/core/app_constants.dart';
 import 'package:taskat/core/widgets/custom_app_button.dart';
+import 'package:taskat/core/widgets/custom_text_form_field.dart';
 import 'package:taskat/features/home/home_screen.dart';
 import 'package:taskat/features/login/models/user_model.dart';
 
@@ -105,34 +106,10 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 10.h),
               Divider(color: Colors.indigo),
               SizedBox(height: 10.h),
-              TextFormField(
-                controller: nameControler,
-                style: TextStyle(
-                  fontFamily: 'appFont',
-                  fontSize: 16.sp,
-                  color: Colors.black,
-                ),
-                onTapOutside: (v) {
-                  FocusScope.of(context).unfocus();
-                },
-                decoration: InputDecoration(
-                  hintText: 'Enter your name',
-                  hintStyle: TextStyle(
-                    fontSize: 16.sp,
-                    fontFamily: 'appFont',
-                    color: Colors.grey,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.indigo),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
+              CustomTextFormField(
+                namedControler: nameControler,
+                hintText: 'Enter your name',
               ),
-
               SizedBox(height: 50.h),
               CustomAppButton(
                 text: 'Done',

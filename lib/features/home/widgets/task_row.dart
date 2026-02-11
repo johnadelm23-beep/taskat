@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:taskat/core/widgets/custom_app_button.dart';
+import 'package:taskat/features/add_task/add_task_screen.dart';
 
 class TaskRow extends StatelessWidget {
-  const TaskRow({super.key});
-
+  const TaskRow({super.key, required this.onPressed});
+  final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -28,7 +29,7 @@ class TaskRow extends StatelessWidget {
         SizedBox(
           width: 180,
           height: 50,
-          child: CustomAppButton(text: '+ add task', onPressed: () {}),
+          child: CustomAppButton(text: '+ add task', onPressed: onPressed),
         ),
       ],
     );

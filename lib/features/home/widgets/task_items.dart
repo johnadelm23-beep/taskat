@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:taskat/features/home/models/task_model.dart';
 
 class TaskItems extends StatelessWidget {
-  const TaskItems({
-    super.key,
-    required this.title,
-    required this.startDate,
-    required this.color,
-    required this.subTitle,
-  });
-  final String title;
-  final String startDate;
-  final Color color;
-  final String subTitle;
+  const TaskItems({super.key, required this.task});
+  final TaskModel task;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +11,7 @@ class TaskItems extends StatelessWidget {
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: color,
+        color: task.color,
       ),
       child: Row(
         children: [
@@ -29,7 +21,7 @@ class TaskItems extends StatelessWidget {
               spacing: 10,
               children: [
                 Text(
-                  title,
+                  task.title,
                   style: TextStyle(
                     fontFamily: 'appFont',
                     fontSize: 20,
@@ -37,7 +29,7 @@ class TaskItems extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  startDate,
+                  '${task.startTime} | ${task.endTime}',
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'appFont',
@@ -45,7 +37,7 @@ class TaskItems extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  subTitle,
+                  task.subTitle,
                   style: TextStyle(
                     fontFamily: 'appFont',
                     fontSize: 20,
